@@ -1,27 +1,41 @@
 import 'package:ecommerceapp/model/item_list.dart';
+import 'package:ecommerceapp/model/navbar_list.dart';
+import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class FruitsPage extends StatefulWidget {
+  const FruitsPage({super.key});
 
   @override
-  State<CartPage> createState() => _CartPageState();
+  State<FruitsPage> createState() => _FruitsPageState();
 }
 
-class _CartPageState extends State<CartPage> {
+class _FruitsPageState extends State<FruitsPage> {
+  
   @override
   Widget build(BuildContext context) {
+     final snap=context.watch<CartPageProvider>();
     return Scaffold(
+      drawer: NavbarList(),
       appBar: AppBar(
-        title: Text(
-          "Cart",
-          style: TextStyle(fontSize: 20, color: Colors.black),
+     
+        
+          title: Text("Fruits",style: TextStyle(fontWeight: FontWeight.w300,color: Colors.black),),centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () { snap.wishedButtonEvent(context);}, icon: Icon(Icons.favorite_outline_outlined),color: Colors.black),
+            IconButton(
+                onPressed: (){
+                snap.cartButtonEvent(context);
+                },
+                icon: Icon(Icons.shopping_cart_checkout_outlined),color: Colors.black,)
+          ],
+          backgroundColor:Color(0XFF47BA1C),
         ),
-        backgroundColor: Color(0XFF47BA1C),
-      ),
+      
       body: ListView.builder(
-        shrinkWrap: true,
-        itemCount: cartlist.length,
+        itemCount: fruitlist.length,
         itemBuilder: (context, index) => Container(
           decoration: BoxDecoration(
               border: Border.all(
@@ -38,7 +52,7 @@ class _CartPageState extends State<CartPage> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
-                          cartlist[index].image,
+                          fruitlist[index].image,
                         ),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.only(
@@ -55,30 +69,31 @@ class _CartPageState extends State<CartPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        cartlist[index].name,
+                        fruitlist[index].name,
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        cartlist[index].price,
+                        fruitlist[index].price,
                         style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      IconButton(
+                  Row(children: [
+                    IconButton(
                         onPressed: () {
-                          setState(() {
-                            cartlist.remove(itemlist[index]);
-                          });
+                          wishlist.add(itemlist[index]);
                         },
-                        icon: Icon(Icons.delete_outline_rounded),
-                      ),
-                    ],
-                  )
+                        icon: Icon(Icons.favorite_outline_outlined)),
+                    IconButton(
+                        onPressed: () {
+                          cartlist.add(itemlist[index]);
+
+                        },
+                        icon: Icon(Icons.shopping_cart_checkout_outlined)),
+                  ])
                 ],
               ),
             )

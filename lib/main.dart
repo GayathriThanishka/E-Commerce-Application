@@ -1,5 +1,7 @@
-import 'package:ecommerceapp/view/first_page.dart';
+import 'package:ecommerceapp/view/vegetables_page.dart';
+import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CartPageProvider>(
+            create: (context) => CartPageProvider(),
+          ),
+        ],
+
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        
+         
+        home:VegetablesPage(),
        
-      home:EcommerceFirstPage(),
+      
+      ),
     );
   }
 }

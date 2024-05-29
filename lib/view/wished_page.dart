@@ -1,30 +1,23 @@
 import 'package:ecommerceapp/model/item_list.dart';
-import 'package:ecommerceapp/view/Cart_Page.dart';
-
 import 'package:flutter/material.dart';
 
-
-class EcommerceFirstPage extends StatefulWidget {
-  const EcommerceFirstPage({super.key});
+class WishedPage extends StatefulWidget {
+  const WishedPage({super.key});
 
   @override
-  State<EcommerceFirstPage> createState() => _EcommerceFirstPageState();
+  State<WishedPage> createState() => _WishedPageState();
 }
 
-class _EcommerceFirstPageState extends State<EcommerceFirstPage> {
+class _WishedPageState extends State<WishedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Vegitables"),
-        actions: [IconButton(onPressed: (){}, icon:Icon( Icons.favorite_outline_outlined)),IconButton(onPressed: (){return cartButtonEvent();
-         
-        }, icon:Icon( Icons.shopping_cart_checkout_outlined))],
-        backgroundColor: const Color.fromARGB(255, 120, 179, 121),
-        
-      ),
+        title: Text("Wishlist & Collections",style :TextStyle(fontSize: 20,color: Colors.black),),), backgroundColor: Color(0XFF47BA1C),
+      
       body: ListView.builder(
-        itemCount: itemlist.length,
+        shrinkWrap: true,
+        itemCount: wishlist.length,
         itemBuilder: (context, index) => Container(
           decoration: BoxDecoration(
               border: Border.all(
@@ -41,7 +34,7 @@ class _EcommerceFirstPageState extends State<EcommerceFirstPage> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
-                          itemlist[index].image,
+                          wishlist[index].image,
                         ),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.only(
@@ -57,21 +50,32 @@ class _EcommerceFirstPageState extends State<EcommerceFirstPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(itemlist[index].name,
-                        
-                        style: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.w500),
+                      Text(
+                        wishlist[index].name,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        itemlist[index].price,
+                        wishlist[index].price,
                         style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     ],
-                  ),Row(
-                    children: [IconButton(onPressed: (){}, icon:Icon( Icons.favorite_outline_outlined)),IconButton(onPressed: (){}, icon:Icon( Icons.shopping_cart_checkout_outlined)),
-                    ]
-              
+                  ),
+                   Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            wishlist.remove(itemlist[index]);
+                          });
+                        },
+                        icon: Icon(Icons.delete_outline_rounded),
+                      ),
+                    ],
                   )
-                  
+                 
                 ],
               ),
             )
@@ -81,8 +85,3 @@ class _EcommerceFirstPageState extends State<EcommerceFirstPage> {
     );
   }
 }
-//  Column(
-//          children: [Image.network(itemlist[index].image,fit: BoxFit.cover,),],
-//        ),
-  //      ListView.builder(itemBuilder:(BuildContext context, int index)
-  //  {
