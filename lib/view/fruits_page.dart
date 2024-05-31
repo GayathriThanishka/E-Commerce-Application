@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/model/item_list.dart';
+
 import 'package:ecommerceapp/model/navbar_list.dart';
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +32,10 @@ class _FruitsPageState extends State<FruitsPage> {
                 icon: Icon(Icons.shopping_cart_checkout_outlined),color: Colors.black,)
           ],
           backgroundColor:Color(0XFF47BA1C),
-        ),
+        ), backgroundColor: Color(0XFFE7F3CD),
       
       body: ListView.builder(
-        itemCount: fruitlist.length,
+        itemCount: snap.fruitslist.length,
         itemBuilder: (context, index) => Container(
           decoration: BoxDecoration(
               border: Border.all(
@@ -52,7 +52,7 @@ class _FruitsPageState extends State<FruitsPage> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
-                          fruitlist[index].image,
+                          snap.fruitslist[index].image,
                         ),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.only(
@@ -69,14 +69,14 @@ class _FruitsPageState extends State<FruitsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        fruitlist[index].name,
+                       snap. fruitslist[index].name,
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        fruitlist[index].price,
+                        snap.fruitslist[index].price,
                         style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     ],
@@ -84,12 +84,12 @@ class _FruitsPageState extends State<FruitsPage> {
                   Row(children: [
                     IconButton(
                         onPressed: () {
-                          wishlist.add(itemlist[index]);
+                         snap. wishedlist.add(snap.fruitslist[index]);
                         },
                         icon: Icon(Icons.favorite_outline_outlined)),
                     IconButton(
                         onPressed: () {
-                          cartlist.add(itemlist[index]);
+                          snap.cartlist.add(snap.fruitslist[index]);
 
                         },
                         icon: Icon(Icons.shopping_cart_checkout_outlined)),

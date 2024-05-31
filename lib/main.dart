@@ -1,5 +1,8 @@
+import 'package:ecommerceapp/view/login_page.dart';
+import 'package:ecommerceapp/view/splash_page.dart';
 import 'package:ecommerceapp/view/vegetables_page.dart';
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
+import 'package:ecommerceapp/viewmodel/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +22,11 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<CartPageProvider>(
             create: (context) => CartPageProvider(),
           ),
+          
+          ChangeNotifierProvider<LoginProvider>(
+            create: (context) => LoginProvider(),
+          ),
+          
         ],
 
       child: MaterialApp(
@@ -26,7 +34,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         
          
-        home:VegetablesPage(),
+        home:SplashPage(),
        
       
       ),

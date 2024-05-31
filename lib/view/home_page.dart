@@ -1,27 +1,51 @@
 import 'package:ecommerceapp/model/item_list.dart';
+import 'package:ecommerceapp/model/navbar_list.dart';
+
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class WishedPage extends StatefulWidget {
-  const WishedPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<WishedPage> createState() => _WishedPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _WishedPageState extends State<WishedPage> {
+class _HomePageState extends State<HomePage> {
+@override
+//   void initState() {
+// final provider = Provider.of<CartPageProvider>(context,listen: false);
+// provider.seperateItem();
+//    super.initState();
+//   }
+ 
   @override
   Widget build(BuildContext context) {
+    final snap=context.watch<CartPageProvider>();
     return Consumer<CartPageProvider>(builder: (context, snap, child) => 
-      Scaffold(
+    Scaffold(
+        drawer: NavbarList(),
         appBar: AppBar(
-          title: Text("Wishlist & Collections",style :TextStyle(fontSize: 20,color: Colors.black), ),backgroundColor: Color(0XFF47BA1C)),
-        
-        body: ListView.builder(
-          shrinkWrap: true,
-          itemCount: snap.wishedlist.length,
+       
           
+            title: Text("Category",style: TextStyle(fontWeight: FontWeight.w300,color: Colors.black),),centerTitle: true,
+            actions: [
+              IconButton(
+                  onPressed: () { snap.wishedButtonEvent(context);}, icon: Icon(Icons.favorite_outline_outlined),color: Colors.black),
+              IconButton(
+                  onPressed: (){
+                  snap.cartButtonEvent(context);
+                  },
+                  icon: Icon(Icons.shopping_cart_checkout_outlined),color: Colors.black,)
+            ],
+            backgroundColor:Color(0XFF47BA1C),
+          ), backgroundColor: Color(0XFFE7F3CD),
+        
+        body: ListView.builder(shrinkWrap: true,
+          itemCount: itemlist.length,
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
                 border: Border.all(
@@ -38,7 +62,7 @@ class _WishedPageState extends State<WishedPage> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                            snap.wishedlist[index].image,
+                           itemlist[index].image,
                           ),
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.only(
@@ -49,36 +73,24 @@ class _WishedPageState extends State<WishedPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          snap.wishedlist[index].name,
+                          itemlist[index].name,
                           style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                         snap. wishedlist[index].price,
+                         itemlist[index].price,
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),
-                     Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              snap.wishedlist.remove(itemlist[index]);
-                            });
-                          },
-                          icon: Icon(Icons.delete_outline_rounded),
-                        ),
-                      ],
-                    )
                    
                   ],
                 ),
