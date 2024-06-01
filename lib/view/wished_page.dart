@@ -17,7 +17,7 @@ class _WishedPageState extends State<WishedPage> {
       Scaffold(
         appBar: AppBar(
           title: Text("Wishlist & Collections",style :TextStyle(fontSize: 20,color: Colors.black), ),backgroundColor: Color(0XFF47BA1C)),
-        
+        backgroundColor: Color(0XFFE7F3CD),
         body: ListView.builder(
           shrinkWrap: true,
           itemCount: snap.wishedlist.length,

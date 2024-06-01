@@ -9,6 +9,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+
 class _LoginPageState extends State<LoginPage> {
   final appkey = GlobalKey<FormState>();
   @override
@@ -16,14 +17,14 @@ class _LoginPageState extends State<LoginPage> {
     return Consumer<LoginProvider>(
       builder: (context, snap, child) => Scaffold(
           appBar: AppBar(
-            title: Text(
+            title:const Text(
               "STOP & SHOP",
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
             centerTitle: true,
-            backgroundColor: Color(0XFF47BA1C),
+            backgroundColor: const Color(0XFF47BA1C),
           ),
-          backgroundColor: Color(0XFFE7F3CD),
+          backgroundColor: const Color(0XFFE7F3CD),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -33,8 +34,8 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.rNXGfSangwio7RgnSoiRsAHaG9?w=511&h=480&rs=1&pid=ImgDetMain"),radius:50),
-                      SizedBox(height: 30,),
+                      const CircleAvatar(backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.rNXGfSangwio7RgnSoiRsAHaG9?w=511&h=480&rs=1&pid=ImgDetMain"),radius:50),
+                      const SizedBox(height: 30,),
                       const Text("User Login",
                           style: TextStyle(fontSize: 24,
                             color:Colors.black,
@@ -79,17 +80,16 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      ElevatedButton(
-                          onPressed: () => snap.submitButtonClickEvent(
-                              context: context, appkey: appkey),
-                          style: ElevatedButton.styleFrom(
+                      ElevatedButton(onPressed: () {snap.submitButtonClickEvent(
+                              context: context, appkey: appkey,);
+                          ElevatedButton.styleFrom(
                             minimumSize: const Size(100, 50),
-                            backgroundColor: const Color(0XFF69E68A),
-                          ),
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(color: Color(0XFF022D60)),
-                          )),
+                            backgroundColor: const Color(0XFF47BA1C),
+                          );
+                        
+                      }, child: const Text("SUBMIT",style:TextStyle(color: Colors.black)),),
+                      
+                      
                     ],
                   ),
                 ),

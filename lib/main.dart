@@ -1,6 +1,6 @@
-import 'package:ecommerceapp/view/login_page.dart';
+
 import 'package:ecommerceapp/view/splash_page.dart';
-import 'package:ecommerceapp/view/vegetables_page.dart';
+
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
 import 'package:ecommerceapp/viewmodel/login_provider.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           
         ],
 
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         

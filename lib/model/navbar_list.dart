@@ -1,4 +1,4 @@
-import 'dart:math';
+
 
 import 'package:ecommerceapp/view/fruits_page.dart';
 import 'package:ecommerceapp/view/home_page.dart';
@@ -24,7 +24,7 @@ class _NavbarListState extends State<NavbarList> {
       child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: ListView(children: [
-            Column(
+            const Column(
               children: [
                 UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Color(0XFF47BA1C)),
@@ -38,12 +38,12 @@ class _NavbarListState extends State<NavbarList> {
                   ),
                   currentAccountPicture: CircleAvatar(
                     child: ClipOval(
-                      child: Image.network(
-                        "https://media.istockphoto.com/id/1483473258/photo/smiling-young-woman-professional-in-formal-wear-with-arms-crossed-and-looking-at-camera.jpg?s=1024x1024&w=is&k=20&c=aA_psXlJflGGQ5q0dv7HALcX_K2LI9HeTEy6gMgTWMk=a",
-                        fit: BoxFit.cover,
+                      child: Image(image: AssetImage("assets/WhatsApp Image 2024-06-01 at 4.32.03 PM.jpeg"),),
+                       
                       ),
                     ),
                   ),
+              ],
                 ),
                 ListTile(
                   title: InkWell(
@@ -53,12 +53,12 @@ class _NavbarListState extends State<NavbarList> {
                           MaterialPageRoute(
                             builder: (context) {
                               snap.seperateItem();
-                              return HomePage();
+                              return const HomePage();
                             },
                           ),
                         );
                       },
-                      child: Text("Home")),
+                      child: const Text("Home")),
                 ),
                 ListTile(
                   title: InkWell(
@@ -67,11 +67,11 @@ class _NavbarListState extends State<NavbarList> {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             snap.seperateItem();
-                            return VegetablesPage();
+                            return const VegetablesPage();
                           },
                         ));
                       },
-                      child: Text("Vegetables")),
+                      child: const Text("Vegetables")),
                 ),
                 ListTile(
                   title: InkWell(
@@ -80,12 +80,12 @@ class _NavbarListState extends State<NavbarList> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return FruitsPage();
+                            return const FruitsPage();
                           },
                         ),
                       );
                     },
-                    child: Text("Fruits"),
+                    child: const Text("Fruits"),
                   ),
                 ),
                 ListTile(
@@ -93,14 +93,20 @@ class _NavbarListState extends State<NavbarList> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return NutsPage();
+                            return const NutsPage();
                           },
                         ),
-                      );}, child: Text("Nuts")),
-                )
+                      );}, child: const Text("Nuts")),
+                ),
+                ListTile(
+                  title: InkWell(onTap: () { Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginPage()), (route) => false);
+                          },child: const Text("LogOut"),
+                        ),
+              ),
+                
               ],
             ),
-          ])),
+      ),
     );
   }
 }

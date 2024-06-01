@@ -27,22 +27,22 @@ class _HomePageState extends State<HomePage> {
     final snap=context.watch<CartPageProvider>();
     return Consumer<CartPageProvider>(builder: (context, snap, child) => 
     Scaffold(
-        drawer: NavbarList(),
+        drawer: const NavbarList(),
         appBar: AppBar(
        
           
-            title: Text("Category",style: TextStyle(fontWeight: FontWeight.w300,color: Colors.black),),centerTitle: true,
+            title: const Text("Category",style: TextStyle(fontWeight: FontWeight.w300,color: Colors.black),),centerTitle: true,
             actions: [
               IconButton(
-                  onPressed: () { snap.wishedButtonEvent(context);}, icon: Icon(Icons.favorite_outline_outlined),color: Colors.black),
+                  onPressed: () { snap.wishedButtonEvent(context);}, icon: const Icon(Icons.favorite_outline_outlined),color: Colors.black),
               IconButton(
                   onPressed: (){
                   snap.cartButtonEvent(context);
                   },
-                  icon: Icon(Icons.shopping_cart_checkout_outlined),color: Colors.black,)
+                  icon: const Icon(Icons.shopping_cart_checkout_outlined),color: Colors.black,)
             ],
-            backgroundColor:Color(0XFF47BA1C),
-          ), backgroundColor: Color(0XFFE7F3CD),
+            backgroundColor:const Color(0XFF47BA1C),
+          ), backgroundColor: const Color(0XFFE7F3CD),
         
         body: ListView.builder(shrinkWrap: true,
           itemCount: itemlist.length,
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                   width: 1,
                 ),
                 borderRadius: BorderRadius.circular(10)),
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 5),
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                            itemlist[index].image,
                           ),
                           fit: BoxFit.cover),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(5),
                           topRight: Radius.circular(5))),
                 ),
@@ -80,14 +80,14 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           itemlist[index].name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
                          itemlist[index].price,
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          style: const TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),

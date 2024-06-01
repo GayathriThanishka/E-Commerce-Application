@@ -1,9 +1,6 @@
-import 'package:ecommerceapp/model/item_list.dart';
+
 import 'package:ecommerceapp/model/navbar_list.dart';
-
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
-import 'package:flutter/foundation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,36 +12,45 @@ class VegetablesPage extends StatefulWidget {
 }
 
 class _VegetablesPageState extends State<VegetablesPage> {
-@override
+  @override
 //   void initState() {
 // final provider = Provider.of<CartPageProvider>(context,listen: false);
 // provider.seperateItem();
 //    super.initState();
 //   }
- 
+
   @override
   Widget build(BuildContext context) {
-    final snap=context.watch<CartPageProvider>();
-    return Consumer<CartPageProvider>(builder: (context, snap, child) => 
-    Scaffold(
-        drawer: NavbarList(),
+    final snap = context.watch<CartPageProvider>();
+    return Consumer<CartPageProvider>(
+      builder: (context, snap, child) => Scaffold(
+        drawer: const NavbarList(),
         appBar: AppBar(
-       
-          
-            title: Text("Vegetables",style: TextStyle(fontWeight: FontWeight.w300,color: Colors.black),),centerTitle: true,
-            actions: [
-              IconButton(
-                  onPressed: () { snap.wishedButtonEvent(context);}, icon: Icon(Icons.favorite_outline_outlined),color: Colors.black),
-              IconButton(
-                  onPressed: (){
-                  snap.cartButtonEvent(context);
-                  },
-                  icon: Icon(Icons.shopping_cart_checkout_outlined),color: Colors.black,)
-            ],
-            backgroundColor:Color(0XFF47BA1C),
-          ), backgroundColor: Color(0XFFE7F3CD),
-        
-        body: ListView.builder(shrinkWrap: true,
+          title: const Text(
+            "Vegetables",
+            style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  snap.wishedButtonEvent(context);
+                },
+                icon: const Icon(Icons.favorite_outline_outlined),
+                color: Colors.black),
+            IconButton(
+              onPressed: () {
+                snap.cartButtonEvent(context);
+              },
+              icon: const Icon(Icons.shopping_cart_checkout_outlined),
+              color: Colors.black,
+            )
+          ],
+          backgroundColor: const Color(0XFF47BA1C),
+        ),
+        backgroundColor: const Color(0XFFE7F3CD),
+        body: ListView.builder(
+          shrinkWrap: true,
           itemCount: snap.vegetableslist.length,
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
@@ -53,7 +59,7 @@ class _VegetablesPageState extends State<VegetablesPage> {
                   width: 1,
                 ),
                 borderRadius: BorderRadius.circular(10)),
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 5),
@@ -62,10 +68,10 @@ class _VegetablesPageState extends State<VegetablesPage> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                           snap. vegetableslist[index].image,
+                            snap.vegetableslist[index].image,
                           ),
                           fit: BoxFit.cover),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(5),
                           topRight: Radius.circular(5))),
                 ),
@@ -79,30 +85,29 @@ class _VegetablesPageState extends State<VegetablesPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                         snap.vegetableslist [index].name,
-                          style: TextStyle(
+                          snap.vegetableslist[index].name,
+                          style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                         snap. vegetableslist[index].price,
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          snap.vegetableslist[index].price,
+                          style: const TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),
                     Row(children: [
                       IconButton(
                           onPressed: () {
-                           snap. wishedlist.add(snap.vegetableslist[index]);
+                            snap.wishedlist.add(snap.vegetableslist[index]);
                           },
-                          icon: Icon(Icons.favorite_outline_outlined)),
+                          icon: const Icon(Icons.favorite_outline_outlined)),
                       IconButton(
                           onPressed: () {
-                           snap. cartlist.add(snap.vegetableslist[index]);
-      
+                            snap.cartlist.add(snap.vegetableslist[index]);
                           },
-                          icon: Icon(Icons.shopping_cart_checkout_outlined)),
+                          icon: const Icon(Icons.shopping_cart_checkout_outlined)),
                     ])
                   ],
                 ),
