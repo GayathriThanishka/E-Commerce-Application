@@ -6,7 +6,9 @@ import 'package:ecommerceapp/view/login_page.dart';
 import 'package:ecommerceapp/view/nuts_page.dart';
 import 'package:ecommerceapp/view/vegetables_page.dart';
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
+import 'package:ecommerceapp/viewmodel/image_picker.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 class NavbarList extends StatefulWidget {
@@ -24,21 +26,30 @@ class _NavbarListState extends State<NavbarList> {
       child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: ListView(children: [
-            const Column(
+             Column(
               children: [
                 UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Color(0XFF47BA1C)),
-                  accountName: Text(
+                  decoration: const BoxDecoration(color: Color(0XFF47BA1C)),
+                  accountName: const Text(
                     "Gayathri",
                     style: TextStyle(color: Colors.black),
                   ),
-                  accountEmail: Text(
+                  accountEmail: const Text(
                     "gayathri@gmail.com",
                     style: TextStyle(color: Colors.black),
                   ),
                   currentAccountPicture: CircleAvatar(
                     child: ClipOval(
-                      child: Image(image: AssetImage("assets/WhatsApp Image 2024-06-01 at 4.32.03 PM.jpeg"),),
+                      child:InkWell(
+        onTap: () { 
+          snap.getImage();
+       
+        
+          
+  
+            
+          
+        },child: Image.file(snap.image!),),
                        
                       ),
                     ),
@@ -71,7 +82,7 @@ class _NavbarListState extends State<NavbarList> {
                           },
                         ));
                       },
-                      child: const Text("Vegetables")),
+                      child: const Text("Vegitables")),
                 ),
                 ListTile(
                   title: InkWell(

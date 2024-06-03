@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ecommerceapp/model/item_list.dart';
 
 import 'package:ecommerceapp/view/Cart_Page.dart';
@@ -5,6 +7,7 @@ import 'package:ecommerceapp/view/wished_page.dart';
 
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CartPageProvider extends ChangeNotifier {
   //Move cartpage function
@@ -65,6 +68,24 @@ class CartPageProvider extends ChangeNotifier {
     }
     
   }
+   File? image;
+
+
+  final  picker =ImagePicker();
+
+  Future getImage()async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+     
+      if (pickedFile != null) {
+        image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+      notifyListeners();
+    }
+
+   
+  }
     // for (var item in itemlist.length; i++) {
     //   if (itemlist[i].catogery == "fruits") {
     //     fruitslist.add(itemlist[i]);
@@ -80,5 +101,5 @@ class CartPageProvider extends ChangeNotifier {
     //   }
 
     //   }
-  }
+  
 

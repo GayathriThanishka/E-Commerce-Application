@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/model/item_list.dart';
 import 'package:ecommerceapp/model/navbar_list.dart';
+import 'package:ecommerceapp/responsive/responsive_Layout.dart';
 
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
 
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
  
   @override
   Widget build(BuildContext context) {
-    final snap=context.watch<CartPageProvider>();
+    //final snap=context.watch<CartPageProvider>();
     return Consumer<CartPageProvider>(builder: (context, snap, child) => 
     Scaffold(
         drawer: const NavbarList(),
@@ -44,7 +45,8 @@ class _HomePageState extends State<HomePage> {
             backgroundColor:const Color(0XFF47BA1C),
           ), backgroundColor: const Color(0XFFE7F3CD),
         
-        body: ListView.builder(shrinkWrap: true,
+        body:ResponsiveLayout(mobileBody:
+         ListView.builder(shrinkWrap: true,
           itemCount: itemlist.length,
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
@@ -98,7 +100,116 @@ class _HomePageState extends State<HomePage> {
             ]),
           ),
         ),
+        desktopBody: GridView.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+         shrinkWrap: true,
+            itemCount: itemlist.length,
+            itemBuilder: (context, index) => Container(
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(10)),
+              margin: const EdgeInsets.all(20),
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                             itemlist[index].image,
+                            ),
+                            fit: BoxFit.cover),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            topRight: Radius.circular(5))),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          itemlist[index].name,
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                         itemlist[index].price,
+                          style: const TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                   
+                  ],
+                )
+              ]),
+            ),
+          ),
+          tabletBody:  GridView.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+         shrinkWrap: true,
+            itemCount: itemlist.length,
+            itemBuilder: (context, index) => Container(
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(10)),
+              margin: const EdgeInsets.all(20),
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                             itemlist[index].image,
+                            ),
+                            fit: BoxFit.cover),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            topRight: Radius.circular(5))),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            itemlist[index].name,
+                            style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                           itemlist[index].price,
+                            style: const TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                     
+                    ],
+                  ),
+                )
+              ]),
+            ),
+          ),
+        ), 
       ),
+    
     );
   }
 }
