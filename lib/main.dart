@@ -1,4 +1,7 @@
 
+
+import 'package:ecommerceapp/view/fruits_page.dart';
+import 'package:ecommerceapp/view/home_page.dart';
 import 'package:ecommerceapp/view/splash_page.dart';
 
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         
          
-        home:SplashPage(),
+        home:HomePage(),
        
       
       ),

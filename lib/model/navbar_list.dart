@@ -1,12 +1,14 @@
 
 
+
+
 import 'package:ecommerceapp/view/fruits_page.dart';
 import 'package:ecommerceapp/view/home_page.dart';
 import 'package:ecommerceapp/view/login_page.dart';
 import 'package:ecommerceapp/view/nuts_page.dart';
 import 'package:ecommerceapp/view/vegetables_page.dart';
 import 'package:ecommerceapp/viewmodel/first_page_provider.dart';
-import 'package:ecommerceapp/viewmodel/image_picker.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -26,7 +28,7 @@ class _NavbarListState extends State<NavbarList> {
       child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: ListView(children: [
-             Column(
+              Column(
               children: [
                 UserAccountsDrawerHeader(
                   decoration: const BoxDecoration(color: Color(0XFF47BA1C)),
@@ -49,7 +51,7 @@ class _NavbarListState extends State<NavbarList> {
   
             
           
-        },child: Image.file(snap.image!),),
+        },child:snap.image!=null? Image.file(snap.image!):Image.network("https://images.pexels.com/photos/1912868/pexels-photo-1912868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")),
                        
                       ),
                     ),
@@ -69,7 +71,11 @@ class _NavbarListState extends State<NavbarList> {
                           ),
                         );
                       },
-                      child: const Text("Home")),
+                      child: const Row(
+                        children: [Icon(Icons.home_outlined),SizedBox(width: 10,),
+                          Text("H O M E"),
+                        ],
+                      )),
                 ),
                 ListTile(
                   title: InkWell(
@@ -82,7 +88,11 @@ class _NavbarListState extends State<NavbarList> {
                           },
                         ));
                       },
-                      child: const Text("Vegitables")),
+                      child: const Row(
+                        children: [Text("🍆",style: TextStyle(color: Colors.black),),SizedBox(width: 10,),
+                           Text("V E G I T A B L E S"),
+                        ],
+                      )),
                 ),
                 ListTile(
                   title: InkWell(
@@ -96,7 +106,11 @@ class _NavbarListState extends State<NavbarList> {
                         ),
                       );
                     },
-                    child: const Text("Fruits"),
+                    child: const Row(
+                      children: [Text("🍇",style: TextStyle(color: Colors.black),),SizedBox(width: 10,),
+                        Text("F R U I T S"),
+                      ],
+                    ),
                   ),
                 ),
                 ListTile(
@@ -107,11 +121,19 @@ class _NavbarListState extends State<NavbarList> {
                             return const NutsPage();
                           },
                         ),
-                      );}, child: const Text("Nuts")),
+                      );}, child: const Row(
+                        children: [Text("🥜",style: TextStyle(color: Colors.black),),SizedBox(width: 10,),
+                          Text("N U T S"),
+                        ],
+                      )),
                 ),
                 ListTile(
                   title: InkWell(onTap: () { Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginPage()), (route) => false);
-                          },child: const Text("LogOut"),
+                          },child: const Row(
+                            children: [Icon(Icons.logout_outlined),SizedBox(width: 10,),
+                              Text("L O G O U T"),
+                            ],
+                          ),
                         ),
               ),
                 

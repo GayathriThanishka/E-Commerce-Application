@@ -15,11 +15,11 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth<600) {
+      if (constraints.maxWidth<=767) {
         return widget.mobileBody;
         
       }
-      else if(constraints.maxWidth<1000 && constraints.minWidth>600){
+      else if(constraints.maxWidth<=1366 || constraints.minWidth>=768 ){
         return widget.tabletBody;
       }
       else{

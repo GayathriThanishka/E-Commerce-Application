@@ -50,207 +50,117 @@ class _VegetablesPageState extends State<VegetablesPage> {
           backgroundColor: const Color(0XFF47BA1C),
         ),
         backgroundColor: const Color(0XFFE7F3CD),
-        body: ResponsiveLayout(mobileBody: 
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: snap.vegetableslist.length,
-          itemBuilder: (context, index) => Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(10)),
-            margin: const EdgeInsets.all(20),
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
+        body: ResponsiveLayout(
+          mobileBody: ListView.builder(
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Container(
+                    height: 250,
+                    width: 250,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),border: Border.all(color: Colors.grey,width: 1),
                       image: DecorationImage(
                           image: NetworkImage(
-                            snap.vegetableslist[index].image,
+                           snap.vegetableslist[index].image,
                           ),
                           fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          topRight: Radius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                    margin: EdgeInsets.all(20),
+                  ),
+                  Text(
+                    snap.vegetableslist[index].name,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    snap.vegetableslist[index].price,
+                    style: const TextStyle(fontSize: 16, color: Colors.grey),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              );
+            },
+          ),
+          desktopBody: Column(
+            children: [
+              Expanded(
+                child: GridView.builder(
+                  itemCount: 10,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 20,
+                     ),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Container(
+                          
+                
+               
+                          height: 300,
+                          width: 300,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),border: Border.all(color: Colors.grey,width: 1),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  snap.vegetableslist[index].image, 
+                                ),
+                                fit: BoxFit.cover),
+                          ),
+                          margin: EdgeInsets.all(20),
+                        ),
                         Text(
                           snap.vegetableslist[index].name,
                           style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
+                          overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           snap.vegetableslist[index].price,
-                          style: const TextStyle(fontSize: 16, color: Colors.grey),
+                          style:
+                              const TextStyle(fontSize: 16, color: Colors.grey),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
-                    ),
-                    Row(children: [
-                      IconButton(
-                          onPressed: () {
-                            snap.wishedlist.add(snap.vegetableslist[index]);
-                          },
-                          icon: const Icon(Icons.favorite_outline_outlined)),
-                      IconButton(
-                          onPressed: () {
-                            snap.cartlist.add(snap.vegetableslist[index]);
-                          },
-                          icon: const Icon(Icons.shopping_cart_checkout_outlined)),
-                    ])
-                  ],
+                    );
+                  },
                 ),
-              )
-            ]),
+              ),
+            ],
           ),
+          tabletBody: Expanded(
+          child: GridView.builder(itemCount: 10,gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 20), itemBuilder: (context, index) {
+             return Column(
+               children: [
+                 Container(
+                   height: 250,
+                  width: 250,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),border: Border.all(color: Colors.grey,width: 1),image:DecorationImage(image: NetworkImage(
+                                       snap.vegetableslist[index].image,
+                                      ),fit: BoxFit.cover),
+                 
+                             ),margin: EdgeInsets.all(20),), Text(
+                       snap.vegetableslist[index].name,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                       snap.vegetableslist[index].price,
+                        style: const TextStyle(fontSize: 16, color: Colors.grey),overflow: TextOverflow.ellipsis,
+                      ),
+               ],
+             );},),
         ),
-        desktopBody: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          shrinkWrap: true,
-          itemCount: snap.vegetableslist.length,
-          itemBuilder: (context, index) => Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(10)),
-            margin: const EdgeInsets.all(20),
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                            snap.vegetableslist[index].image,
-                          ),
-                          fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          topRight: Radius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          snap.vegetableslist[index].name,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          snap.vegetableslist[index].price,
-                          style: const TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    Row(children: [
-                      IconButton(
-                          onPressed: () {
-                            snap.wishedlist.add(snap.vegetableslist[index]);
-                          },
-                          icon: const Icon(Icons.favorite_outline_outlined)),
-                      IconButton(
-                          onPressed: () {
-                            snap.cartlist.add(snap.vegetableslist[index]);
-                          },
-                          icon: const Icon(Icons.shopping_cart_checkout_outlined)),
-                    ])
-                  ],
-                ),
-              )
-            ]),
-          ),
         ),
-         
-          tabletBody: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          shrinkWrap: true,
-          itemCount: snap.vegetableslist.length,
-          itemBuilder: (context, index) => Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(10)),
-            margin: const EdgeInsets.all(20),
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Container(
-                  height: 150,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                            snap.vegetableslist[index].image,
-                          ),
-                          fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          topRight: Radius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          snap.vegetableslist[index].name,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          snap.vegetableslist[index].price,
-                          style: const TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    Row(children: [
-                      IconButton(
-                          onPressed: () {
-                            snap.wishedlist.add(snap.vegetableslist[index]);
-                          },
-                          icon: const Icon(Icons.favorite_outline_outlined)),
-                      IconButton(
-                          onPressed: () {
-                            snap.cartlist.add(snap.vegetableslist[index]);
-                          },
-                          icon: const Icon(Icons.shopping_cart_checkout_outlined)),
-                    ])
-                  ],
-                ),
-              )
-            ]),
-          ),
-        ),         
-          ),
         ),
       );
     
